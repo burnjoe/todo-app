@@ -1,7 +1,14 @@
-export default function Button({}) {
+export default function Button(props) {
+  // Destructuring
+  const { buttonType, children } = props;
+
   return (
-    <button className="h-[45px] bg-[#473a2b] hover:bg-[#322618] w-full text-white rounded-[5px] cursor-pointer">
-      Add to list
+    <button
+      className={`h-[45px] bg-[#473a2b] hover:bg-[#322618] w-full text-white rounded-[5px] cursor-pointer ${
+        buttonType === "secondary" ? "opacity-[85%]" : ""
+      }`}
+    >
+      {children}
     </button>
   );
 }
