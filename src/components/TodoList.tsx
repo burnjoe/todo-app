@@ -1,27 +1,28 @@
+import { useState } from "react";
 import DeleteButton from "./DeleteButton";
 
-const initialTodos = [
-  {
-    id: 1,
-    text: "finish springboot project",
-    isCompleted: false,
-  },
-  {
-    id: 2,
-    text: "study react with typescript",
-    isCompleted: false,
-  },
-  {
-    id: 3,
-    text: "draft a plan for the startup business",
-    isCompleted: false,
-  },
-];
-
 export default function TodoList() {
+  const [todos, setTodos] = useState([
+    {
+      id: 1,
+      text: "finish springboot project",
+      isCompleted: false,
+    },
+    {
+      id: 2,
+      text: "study react with typescript",
+      isCompleted: false,
+    },
+    {
+      id: 3,
+      text: "draft a plan for the startup",
+      isCompleted: false,
+    },
+  ]);
+
   return (
     <ul>
-      {initialTodos.map((todo) => (
+      {todos.map((todo) => (
         <li
           key={todo.id}
           className="flex justify-between items-center px-8 h-[50px] text-[14px] cursor-pointer border-b border-black/[8%]"
@@ -31,7 +32,7 @@ export default function TodoList() {
           >
             {todo.text}
           </span>
-          <DeleteButton />
+          <DeleteButton id={todo.id} setTodos={setTodos} />
         </li>
       ))}
     </ul>
