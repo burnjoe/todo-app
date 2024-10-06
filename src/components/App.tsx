@@ -6,23 +6,7 @@ import Footer from "./Footer";
 import { useState } from "react";
 
 function App() {
-  const [todos, setTodos] = useState([
-    {
-      id: 1,
-      text: "finish springboot project",
-      isCompleted: false,
-    },
-    {
-      id: 2,
-      text: "study react with typescript",
-      isCompleted: false,
-    },
-    {
-      id: 3,
-      text: "draft a plan for the startup",
-      isCompleted: false,
-    },
-  ]);
+  const [todos, setTodos] = useState([]);
 
   return (
     <div className="flex justify-center items-center font-sans bg-[#f1d4b3] min-h-screen flex-col">
@@ -33,7 +17,7 @@ function App() {
 
         <TodoList todos={todos} setTodos={setTodos} />
 
-        <Sidebar />
+        <Sidebar todos={todos} setTodos={setTodos} />
       </main>
 
       <Footer />
