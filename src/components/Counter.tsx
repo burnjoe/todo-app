@@ -1,7 +1,8 @@
-export default function Counter() {
+export default function Counter({ todos }) {
   return (
     <p>
-      <b>0</b> / 0 completed
+      <b>{todos.filter((todo) => todo.isCompleted).length}</b> / {todos.length}{" "}
+      completed
     </p>
   );
 }

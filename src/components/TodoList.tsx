@@ -1,25 +1,6 @@
-import { useState } from "react";
 import DeleteButton from "./DeleteButton";
 
-export default function TodoList() {
-  const [todos, setTodos] = useState([
-    {
-      id: 1,
-      text: "finish springboot project",
-      isCompleted: false,
-    },
-    {
-      id: 2,
-      text: "study react with typescript",
-      isCompleted: false,
-    },
-    {
-      id: 3,
-      text: "draft a plan for the startup",
-      isCompleted: false,
-    },
-  ]);
-
+export default function TodoList({ todos, setTodos }) {
   return (
     <ul>
       {todos.map((todo) => (
