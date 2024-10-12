@@ -17,6 +17,14 @@ function App() {
   // State
   const [todos, setTodos] = useState<Todo[]>([]);
 
+  // Derived State
+  // Done so that we don't have to pass the entire todos to inner components just for them to derive the total length of todos
+  const totalNumberOfTodos = todos.length;
+
+  const numberOfCompletedTodos = todos.filter(
+    (todo) => todo.isCompleted
+  ).length;
+
   // Event Handlers / Actions
   const handleAddTodo = (todoText: string) => {
     if (todos.length >= 3) {
@@ -55,7 +63,10 @@ function App() {
       <BackgroundHeading />
 
       <main className="relative w-[972px] h-[636px] bg-white rounded-[8px] shadow-[0_4px_4px_rgba(0,0,0,0.08)] grid grid-cols-[7fr_4fr] grid-rows-[59px_1fr] overflow-hidden">
-        <Header todos={todos} />
+        <Header
+          totalNumberOfTodos={totalNumberOfTodos}
+          numberOfCompletedTodos={numberOfCompletedTodos}
+        />
 
         <TodoList
           todos={todos}
