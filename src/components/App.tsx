@@ -5,10 +5,20 @@ import Sidebar from "./Sidebar";
 import Footer from "./Footer";
 import { useState } from "react";
 
-function App() {
-  const [todos, setTodos] = useState([]);
+// Defined the Todo type similar to how we create a record/class in Java
+// Export to enable reusability of this Todo type
+export type Todo = {
+  id: number;
+  text: string;
+  isCompleted: boolean;
+};
 
-  const handleAddTodo = (todoText) => {
+function App() {
+  // State
+  const [todos, setTodos] = useState<Todo[]>([]);
+
+  // Event Handlers / Actions
+  const handleAddTodo = (todoText: string) => {
     if (todos.length >= 3) {
       alert("Please log in or register to add more todos.");
       return;
@@ -24,7 +34,7 @@ function App() {
     }
   };
 
-  const handleToggleTodo = (id) => {
+  const handleToggleTodo = (id: number) => {
     setTodos(
       todos.map((todo) => {
         if (todo.id === id) {
@@ -35,7 +45,7 @@ function App() {
     );
   };
 
-  const handleDeleteTodo = (id) => {
+  const handleDeleteTodo = (id: number) => {
     // The 'prev' refers to previous state of todos array (current list of todos)
     setTodos((prev) => prev.filter((todo) => todo.id !== id));
   };
@@ -53,7 +63,7 @@ function App() {
           handleDeleteTodo={handleDeleteTodo}
         />
 
-        <Sidebar todos={todos} handleAddTodo={handleAddTodo} />
+        <Sidebar handleAddTodo={handleAddTodo} />
       </main>
 
       <Footer />

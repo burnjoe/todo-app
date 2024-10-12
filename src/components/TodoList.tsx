@@ -1,10 +1,18 @@
+import { Todo } from "./App";
 import DeleteButton from "./DeleteButton";
+
+type TodoListProps = {
+  // Reuse the exported Todo from App.tsx
+  todos: Todo[];
+  handleToggleTodo: (id: number) => void;
+  handleDeleteTodo: (id: number) => void;
+};
 
 export default function TodoList({
   todos,
   handleToggleTodo,
   handleDeleteTodo,
-}) {
+}: TodoListProps) {
   return (
     <ul>
       {/* Short-circuiting 'condition && expression', if condition is true return expression */}
