@@ -21,8 +21,17 @@ export const TodosContext = createContext<TTodosContext | null>(null);
 export default function TodosContextProvider({
   children,
 }: TodoContextProviderProps) {
+  const getInitialTodos = () => {
+    const savedTodos = localStorage.getItem("todos");
+
+    if (savedTodos) {
+      return JSON.parse(savedTodos);
+    }
+    return [];
+  };
+
   // State
-  const [todos, setTodos] = useState<Todo[]>([]);
+  const [todos, setTodos] = useState<Todo[]>(getInitialTodos);
 
   // Derived State
   // Done so that we don't have to pass the entire todos to inner components just for them to derive the total length of todos
@@ -67,15 +76,8 @@ export default function TodosContextProvider({
 
   // Side Effects
   useEffect(() => {
-    const fetchTodos = async () => {
-      const response = await fetch(
-        "https://bytegrad.com/course-assets/api/todos"
-      );
-      const todos = await response.json();
-      setTodos(todos);
-    };
-    fetchTodos();
-  }, []);
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   return (
     <TodosContext.Provider
