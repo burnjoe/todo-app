@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { Todo } from "../lib/types";
 
 type TodoContextProviderProps = {
@@ -64,6 +64,18 @@ export default function TodosContextProvider({
     // The 'prev' refers to previous state of todos array (current list of todos)
     setTodos((prev) => prev.filter((todo) => todo.id !== id));
   };
+
+  // Side Effects
+  useEffect(() => {
+    const fetchTodos = async () => {
+      const response = await fetch(
+        "https://bytegrad.com/course-assets/api/todos"
+      );
+      const todos = await response.json();
+      setTodos(todos);
+    };
+    fetchTodos();
+  }, []);
 
   return (
     <TodosContext.Provider
