@@ -1,19 +1,16 @@
 type DeleteButtonProps = {
   id: number;
-  handleDeleteTodo: (id: number) => void;
+  onDeleteTodo: (id: number) => void;
 };
 
 // Destructuring setTodos from props (props.setTodos)
-export default function DeleteButton({
-  id,
-  handleDeleteTodo,
-}: DeleteButtonProps) {
+export default function DeleteButton({ id, onDeleteTodo }: DeleteButtonProps) {
   return (
     <button
       onClick={(e) => {
         // Prevents the click event from bubbling up to parent elements
         e.stopPropagation();
-        handleDeleteTodo(id);
+        onDeleteTodo(id);
       }}
     >
       ❌

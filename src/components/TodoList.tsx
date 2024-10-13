@@ -1,18 +1,9 @@
-import { Todo } from "../lib/types";
 import DeleteButton from "./DeleteButton";
+import { useTodosContext } from "../lib/hooks";
 
-type TodoListProps = {
-  // Reuse the exported Todo from App.tsx
-  todos: Todo[];
-  handleToggleTodo: (id: number) => void;
-  handleDeleteTodo: (id: number) => void;
-};
+export default function TodoList() {
+  const { todos, handleToggleTodo, handleDeleteTodo } = useTodosContext();
 
-export default function TodoList({
-  todos,
-  handleToggleTodo,
-  handleDeleteTodo,
-}: TodoListProps) {
   return (
     <ul>
       {/* Short-circuiting 'condition && expression', if condition is true return expression */}
@@ -36,7 +27,7 @@ export default function TodoList({
           >
             {todo.text}
           </span>
-          <DeleteButton id={todo.id} handleDeleteTodo={handleDeleteTodo} />
+          <DeleteButton id={todo.id} onDeleteTodo={handleDeleteTodo} />
         </li>
       ))}
     </ul>
