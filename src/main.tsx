@@ -10,8 +10,16 @@ createRoot(document.getElementById("root")!).render(
     <KindeProvider
       clientId="86d6b46c433a41d9ac892835490b49a0"
       domain="https://bnje.kinde.com"
-      redirectUri="http://localhost:5173"
-      logoutUri="http://localhost:5173"
+      redirectUri={
+        process.env.NODE_ENV == "production"
+          ? "https://todo-app-bnje.netlify.app/"
+          : "http://localhost:5173"
+      }
+      logoutUri={
+        process.env.NODE_ENV == "production"
+          ? "https://todo-app-bnje.netlify.app/"
+          : "http://localhost:5173"
+      }
     >
       {/* Wrapped App with context provider to manage and provide state */}
       <TodosContextProvider>
