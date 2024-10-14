@@ -20,6 +20,7 @@ createRoot(document.getElementById("root")!).render(
           ? "https://todo-app-bnje.netlify.app/"
           : "http://localhost:5173"
       }
+      isDangerouslyUseLocalStorage={true}
     >
       {/* Wrapped App with context provider to manage and provide state */}
       <TodosContextProvider>
